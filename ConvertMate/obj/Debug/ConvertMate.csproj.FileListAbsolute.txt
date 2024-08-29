@@ -26,3 +26,4 @@ C:\Users\aleks\source\repos\ConvertMate\ConvertMate\bin\Debug\Remote.Linq.Newton
 C:\Users\aleks\source\repos\ConvertMate\ConvertMate\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\aleks\source\repos\ConvertMate\ConvertMate\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\aleks\source\repos\ConvertMate\ConvertMate\obj\Debug\ConvertMate.csproj.CopyComplete
+C:\Users\aleks\source\repos\ConvertMate\ConvertMate\obj\Debug\ConvertMate.FormCurrencies.resources
