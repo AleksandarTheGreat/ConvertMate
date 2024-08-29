@@ -16,6 +16,7 @@ namespace ConvertMate
     {
         private static readonly HttpClient client = new HttpClient();
         private static int counter = 1;
+        private SortedSet<string> allCurrencies;
         public FormCurrencies()
         {
             InitializeComponent();
@@ -100,7 +101,8 @@ namespace ConvertMate
                     JObject json = JObject.Parse(responseBody);
 
                     var currencies = json["conversion_rates"].ToObject<Dictionary<string, object>>().Keys;
-                    var sortedCurrencies = new SortedSet<string>(currencies);
+                    SortedSet<string> sortedCurrencies = new SortedSet<string>(currencies);
+                    allCurrencies = sortedCurrencies;
 
                     listBoxCurrencies.Items.Clear();
                     foreach (var currency in sortedCurrencies)
@@ -119,32 +121,6 @@ namespace ConvertMate
             }
         }
 
-        private void btnMoveToFrom_Click(object sender, EventArgs e)
-        {
-            if (listBoxCurrencies.SelectedIndex != -1)
-            {
-                string currecny = listBoxCurrencies.SelectedItem.ToString();
-                textBoxFrom.Text = currecny;
-            }
-            else
-            {
-                MessageBox.Show("Please select a currency");
-            }
-        }
-
-        private void btnMoveToTo_Click(object sender, EventArgs e)
-        {
-            if (listBoxCurrencies.SelectedIndex != -1)
-            {
-                string currecny = listBoxCurrencies.SelectedItem.ToString();
-                textBoxTo.Text = currecny;
-            }
-            else
-            {
-                MessageBox.Show("Please select a currency");
-            }
-        }
-
         private void listBoxCurrencies_DoubleClick(object sender, EventArgs e)
         {
             if (counter == 1)
@@ -157,6 +133,18 @@ namespace ConvertMate
                 string currency = listBoxCurrencies.SelectedItem.ToString();
                 textBoxTo.Text = currency;
                 counter = 1;
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            string query = textBoxSearch.Text.ToString().Trim().ToUpper();
+            SortedSet<string> filteredCurrencies = new SortedSet<string>(allCurrencies.Where(s => s.Contains(query)));
+
+            listBoxCurrencies.Items.Clear();
+            foreach (var currency in filteredCurrencies)
+            {
+                listBoxCurrencies.Items.Add(currency);
             }
         }
     }

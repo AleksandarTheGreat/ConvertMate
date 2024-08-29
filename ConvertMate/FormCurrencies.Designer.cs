@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnMoveToTo = new System.Windows.Forms.Button();
-            this.btnMoveToFrom = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.listBoxCurrencies = new System.Windows.Forms.ListBox();
             this.lbResult = new System.Windows.Forms.Label();
@@ -40,32 +38,14 @@
             this.textBoxAmount = new System.Windows.Forms.TextBox();
             this.textBoxFrom = new System.Windows.Forms.TextBox();
             this.textBoxTo = new System.Windows.Forms.TextBox();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // btnMoveToTo
-            // 
-            this.btnMoveToTo.Location = new System.Drawing.Point(273, 329);
-            this.btnMoveToTo.Name = "btnMoveToTo";
-            this.btnMoveToTo.Size = new System.Drawing.Size(108, 23);
-            this.btnMoveToTo.TabIndex = 24;
-            this.btnMoveToTo.Text = "Move to To field";
-            this.btnMoveToTo.UseVisualStyleBackColor = true;
-            this.btnMoveToTo.Click += new System.EventHandler(this.btnMoveToTo_Click);
-            // 
-            // btnMoveToFrom
-            // 
-            this.btnMoveToFrom.Location = new System.Drawing.Point(273, 284);
-            this.btnMoveToFrom.Name = "btnMoveToFrom";
-            this.btnMoveToFrom.Size = new System.Drawing.Size(108, 23);
-            this.btnMoveToFrom.TabIndex = 23;
-            this.btnMoveToFrom.Text = "Move to From field";
-            this.btnMoveToFrom.UseVisualStyleBackColor = true;
-            this.btnMoveToFrom.Click += new System.EventHandler(this.btnMoveToFrom_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(57, 47);
+            this.label4.Location = new System.Drawing.Point(53, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 22;
@@ -74,7 +54,7 @@
             // listBoxCurrencies
             // 
             this.listBoxCurrencies.FormattingEnabled = true;
-            this.listBoxCurrencies.Location = new System.Drawing.Point(57, 67);
+            this.listBoxCurrencies.Location = new System.Drawing.Point(56, 71);
             this.listBoxCurrencies.Name = "listBoxCurrencies";
             this.listBoxCurrencies.Size = new System.Drawing.Size(184, 342);
             this.listBoxCurrencies.TabIndex = 21;
@@ -147,13 +127,30 @@
             this.textBoxTo.Size = new System.Drawing.Size(100, 20);
             this.textBoxTo.TabIndex = 13;
             // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Location = new System.Drawing.Point(273, 305);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(194, 20);
+            this.textBoxSearch.TabIndex = 25;
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(273, 286);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 13);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Search";
+            // 
             // FormCurrencies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 483);
-            this.Controls.Add(this.btnMoveToTo);
-            this.Controls.Add(this.btnMoveToFrom);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.listBoxCurrencies);
             this.Controls.Add(this.lbResult);
@@ -173,9 +170,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnMoveToTo;
-        private System.Windows.Forms.Button btnMoveToFrom;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox listBoxCurrencies;
         private System.Windows.Forms.Label lbResult;
@@ -186,5 +180,7 @@
         private System.Windows.Forms.TextBox textBoxAmount;
         private System.Windows.Forms.TextBox textBoxFrom;
         private System.Windows.Forms.TextBox textBoxTo;
+        private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.Label label5;
     }
 }
