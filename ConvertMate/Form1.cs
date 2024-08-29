@@ -25,13 +25,13 @@ namespace ConvertMate
         private void buttonCurrencies_Click(object sender, EventArgs e)
         {
             FormCurrencies formCurrencies = new FormCurrencies();
-            formCurrencies.Show();
+            formCurrencies.ShowDialog();
         }
 
         private void buttonUnits_Click(object sender, EventArgs e)
         {
             FormUnits formUnits = new FormUnits();
-            formUnits.Show();
+            formUnits.ShowDialog();
         }
     }
 }

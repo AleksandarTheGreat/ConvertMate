@@ -40,6 +40,9 @@
             this.textBoxTo = new System.Windows.Forms.TextBox();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.listBoxRecently = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.buttonRemove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label4
@@ -63,7 +66,7 @@
             // lbResult
             // 
             this.lbResult.AutoSize = true;
-            this.lbResult.Location = new System.Drawing.Point(273, 163);
+            this.lbResult.Location = new System.Drawing.Point(285, 230);
             this.lbResult.Name = "lbResult";
             this.lbResult.Size = new System.Drawing.Size(93, 13);
             this.lbResult.TabIndex = 20;
@@ -72,7 +75,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(427, 52);
+            this.label3.Location = new System.Drawing.Point(439, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 19;
@@ -81,7 +84,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(273, 102);
+            this.label2.Location = new System.Drawing.Point(285, 169);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 18;
@@ -90,7 +93,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(273, 52);
+            this.label1.Location = new System.Drawing.Point(285, 119);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 17;
@@ -98,9 +101,9 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(273, 221);
+            this.btnCalculate.Location = new System.Drawing.Point(285, 288);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(281, 23);
+            this.btnCalculate.Size = new System.Drawing.Size(254, 23);
             this.btnCalculate.TabIndex = 16;
             this.btnCalculate.Text = "Calculate";
             this.btnCalculate.UseVisualStyleBackColor = true;
@@ -108,47 +111,77 @@
             // 
             // textBoxAmount
             // 
-            this.textBoxAmount.Location = new System.Drawing.Point(427, 71);
+            this.textBoxAmount.Location = new System.Drawing.Point(439, 138);
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(100, 20);
             this.textBoxAmount.TabIndex = 15;
             // 
             // textBoxFrom
             // 
-            this.textBoxFrom.Location = new System.Drawing.Point(273, 71);
+            this.textBoxFrom.Location = new System.Drawing.Point(285, 138);
             this.textBoxFrom.Name = "textBoxFrom";
             this.textBoxFrom.Size = new System.Drawing.Size(100, 20);
             this.textBoxFrom.TabIndex = 14;
             // 
             // textBoxTo
             // 
-            this.textBoxTo.Location = new System.Drawing.Point(273, 118);
+            this.textBoxTo.Location = new System.Drawing.Point(285, 185);
             this.textBoxTo.Name = "textBoxTo";
             this.textBoxTo.Size = new System.Drawing.Size(100, 20);
             this.textBoxTo.TabIndex = 13;
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(273, 305);
+            this.textBoxSearch.Location = new System.Drawing.Point(285, 71);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(194, 20);
+            this.textBoxSearch.Size = new System.Drawing.Size(254, 20);
             this.textBoxSearch.TabIndex = 25;
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(273, 286);
+            this.label5.Location = new System.Drawing.Point(285, 43);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 13);
+            this.label5.Size = new System.Drawing.Size(86, 13);
             this.label5.TabIndex = 26;
-            this.label5.Text = "Search";
+            this.label5.Text = "Search Currency";
+            // 
+            // listBoxRecently
+            // 
+            this.listBoxRecently.FormattingEnabled = true;
+            this.listBoxRecently.Location = new System.Drawing.Point(595, 71);
+            this.listBoxRecently.Name = "listBoxRecently";
+            this.listBoxRecently.Size = new System.Drawing.Size(258, 342);
+            this.listBoxRecently.TabIndex = 27;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(595, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(152, 13);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Recently converted currencies";
+            // 
+            // buttonRemove
+            // 
+            this.buttonRemove.Location = new System.Drawing.Point(595, 434);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(258, 23);
+            this.buttonRemove.TabIndex = 29;
+            this.buttonRemove.Text = "Remove Log";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
             // FormCurrencies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 483);
+            this.ClientSize = new System.Drawing.Size(923, 510);
+            this.Controls.Add(this.buttonRemove);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.listBoxRecently);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.label4);
@@ -164,6 +197,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormCurrencies";
             this.Text = "FormCurrencies";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCurrencies_FormClosed);
+            this.Load += new System.EventHandler(this.FormCurrencies_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +217,8 @@
         private System.Windows.Forms.TextBox textBoxTo;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox listBoxRecently;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonRemove;
     }
 }

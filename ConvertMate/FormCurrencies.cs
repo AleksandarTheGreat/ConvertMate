@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Aqua.EnumerableExtensions;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -62,7 +64,14 @@ namespace ConvertMate
                             if (decimal.TryParse(amountText, out decimal amount))
                             {
                                 decimal convertedAmount = amount * conversionRate;
-                                lbResult.Text = $"{amount} {baseCurrency} is equal to {convertedAmount:F2} {targetCurrency}";
+                                string result = $"{amount} {baseCurrency} is equal to {convertedAmount:F2} {targetCurrency}";
+
+                                lbResult.Text = result;
+                                listBoxRecently.Items.Add(result);
+
+                                // Save to file the recently converted currency
+
+                                clearInputs();
                             }
                             else
                             {
@@ -102,6 +111,8 @@ namespace ConvertMate
 
                     var currencies = json["conversion_rates"].ToObject<Dictionary<string, object>>().Keys;
                     SortedSet<string> sortedCurrencies = new SortedSet<string>(currencies);
+
+                    // So that we can filter the currencies via searching
                     allCurrencies = sortedCurrencies;
 
                     listBoxCurrencies.Items.Clear();
@@ -146,6 +157,86 @@ namespace ConvertMate
             {
                 listBoxCurrencies.Items.Add(currency);
             }
+        }
+
+        private void clearInputs()
+        {
+            textBoxFrom.Clear();
+            textBoxTo.Clear();
+            textBoxSearch.Clear();
+            textBoxAmount.Clear();
+        }
+
+        public void saveToDataFile()
+        {
+            string relativePath = @"..\..\Data\recently.txt";
+            string directoryPath = Path.GetDirectoryName(relativePath);
+
+            if (!Directory.Exists(directoryPath)){
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i=0;i< listBoxRecently.Items.Count; i++)
+            {
+                string line = (string) listBoxRecently.Items[i];
+                stringBuilder.AppendLine(line);
+            }
+
+            File.WriteAllText(relativePath, stringBuilder.ToString());
+            MessageBox.Show("Saved to file successfully ??");
+        }
+
+        public void readFromDataFile()
+        {
+            listBoxRecently.Items.Clear();
+
+            string relativePath = @"..\..\Data\recently.txt";
+            if (File.Exists(relativePath))
+            {
+                try
+                {
+                    using (StreamReader sr = new StreamReader(relativePath))
+                    {
+                        string line;
+                        while((line = sr.ReadLine()) != null)
+                        {
+                            listBoxRecently.Items.Add(line);
+                        }
+                    }
+
+                } catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}");
+                }
+            }
+        }
+
+        private void buttonRemove_Click(object sender, EventArgs e)
+        {
+            string item = (string) listBoxRecently.SelectedItem;
+            if (item != null)
+            {
+                listBoxRecently.Items.Remove(item);
+            }
+            else
+            {
+                MessageBox.Show("Please select an item");
+            }
+            
+        }
+
+        private void FormCurrencies_Load(object sender, EventArgs e)
+        {
+            // Reading the recently search currencies
+            readFromDataFile();
+        }
+
+        private void FormCurrencies_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Saving the recently search currencies
+            saveToDataFile();
         }
     }
 }

@@ -131,6 +131,9 @@
     <EmbeddedResource Include="FormCurrencies.resx">
       <DependentUpon>FormCurrencies.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormUnits.resx">
+      <DependentUpon>FormUnits.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
