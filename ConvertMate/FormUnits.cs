@@ -72,7 +72,6 @@ namespace ConvertMate
             list.Add(new Unit("Fahrenheit", "°F"));
             list.Add(new Unit("Kelvin", "K"));
             list.Add(new Unit("Rankine", "°R"));
-            list.Add(new Unit("Reaumur", "°Re"));
             unitGroupTemperature = new UnitGroup(list);
 
             list = new List<Unit>();
@@ -182,6 +181,11 @@ namespace ConvertMate
                         distanceRequest();
                         break;
                     }
+                case "temperature":
+                    {
+                        temperatureConvertor();
+                        break;
+                    }
                 default:
                     {
                         MessageBox.Show("Not ready yet");
@@ -235,6 +239,59 @@ namespace ConvertMate
             }
         }
 
+        // Convertor of Temperature Units
+        public void temperatureConvertor()
+        {
+            string fromUnit = textBoxFrom.Text.ToString().Trim();
+            string toUnit = textBoxTo.Text.ToString().Trim();
+            string amount = textBoxAmount.Text.ToString().Trim();
 
+            if (fromUnit.IsNullOrEmpty() || toUnit.IsNullOrEmpty() || amount.IsNullOrEmpty())
+            {
+                MessageBox.Show("Fill all inputs");
+                return;
+            }
+
+            /*
+            
+            list.Add(new Unit("Celsius", "°C"));
+            list.Add(new Unit("Fahrenheit", "°F"));
+            list.Add(new Unit("Kelvin", "K"));
+            list.Add(new Unit("Rankine", "°R"));
+            
+             */
+
+            decimal result = 0.0M;
+            if (fromUnit.Equals("°C") && toUnit.Equals("°F"))
+                result = TemperatureConvertor.CelsiusToFahrenheit(Decimal.Parse(amount));
+            else if (fromUnit.Equals("°C") && toUnit.Equals("K"))
+                result = TemperatureConvertor.CelsiusToKelvin(Decimal.Parse(amount));
+            else if (fromUnit.Equals("°C") && toUnit.Equals("°R"))
+                result = TemperatureConvertor.CelsiusToRankine(Decimal.Parse(amount));
+
+            else if (fromUnit.Equals("°F") && toUnit.Equals("°C"))
+                result = TemperatureConvertor.FahrenheitToCelsius(Decimal.Parse(amount));
+            else if (fromUnit.Equals("°F") && toUnit.Equals("K"))
+                result = TemperatureConvertor.FahrenheitToKelvin(Decimal.Parse(amount));
+            else if (fromUnit.Equals("°F") && toUnit.Equals("°R"))
+                result = TemperatureConvertor.FahrenheitToRankine(Decimal.Parse(amount));
+
+            else if (fromUnit.Equals("K") && toUnit.Equals("°C"))
+                result = TemperatureConvertor.KelvinToCelsius(Decimal.Parse(amount));
+            else if (fromUnit.Equals("K") && toUnit.Equals("°F"))
+                result = TemperatureConvertor.KelvinToFahrenheit(Decimal.Parse(amount));
+            else if (fromUnit.Equals("K") && toUnit.Equals("°R"))
+                result = TemperatureConvertor.KelvinToRankine(Decimal.Parse(amount));
+
+            else if (fromUnit.Equals("°R") && toUnit.Equals("°C"))
+                result = TemperatureConvertor.RankineToCelsius(Decimal.Parse(amount));
+            else if (fromUnit.Equals("°R") && toUnit.Equals("°F"))
+                result = TemperatureConvertor.RankineToFahrenheit(Decimal.Parse(amount));
+            else if (fromUnit.Equals("°R") && toUnit.Equals("°K"))
+                result = TemperatureConvertor.RankineToKelvin(Decimal.Parse(amount));
+
+            textBoxResult.Text = result.ToString();
+            clearInputs();
+        }
     }
 }
