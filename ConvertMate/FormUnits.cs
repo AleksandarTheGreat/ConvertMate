@@ -22,12 +22,13 @@ namespace ConvertMate
         public UnitGroup unitGroupVolume { get; set; }
         public UnitGroup unitGroupTime { get; set; }
         private int counter = 1;
-        private string type = "distance";
+        private string type;
 
         public FormUnits()
         {
             InitializeComponent();
             setUpUnitGroups();
+            type = "distance";
             listBoxMeasurments.Items.Clear();
             foreach (Unit unit in unitGroupDistance.unitsList)
             {
@@ -35,6 +36,8 @@ namespace ConvertMate
             }
         }
 
+        // All Distance units, Load them all ASYNCHRONIOUSLY
+        // This method is not called
         public async void loadMeasurementUnits()
         {
             var client = new HttpClient();
@@ -172,7 +175,7 @@ namespace ConvertMate
             }
         }
 
-        private async void buttonCalculate_Click(object sender, EventArgs e)
+        private void buttonCalculate_Click(object sender, EventArgs e)
         {
             switch (type)
             {
@@ -215,7 +218,7 @@ namespace ConvertMate
             string toUnit = textBoxTo.Text.ToString();
             string amount = textBoxAmount.Text.ToString();
 
-            if (fromUnit.IsNullOrEmpty() || toUnit.IsNullOrEmpty() || amount.IsNullOrEmpty())
+            if (areThereInputErrors(fromUnit, toUnit, amount))
             {
                 MessageBox.Show("Fill all inputs");
                 return;
@@ -251,8 +254,9 @@ namespace ConvertMate
             string fromUnit = textBoxFrom.Text.ToString().Trim();
             string toUnit = textBoxTo.Text.ToString().Trim();
             string amount = textBoxAmount.Text.ToString().Trim();
+            decimal parsedAmount = Decimal.Parse(amount);
 
-            if (fromUnit.IsNullOrEmpty() || toUnit.IsNullOrEmpty() || amount.IsNullOrEmpty())
+            if (areThereInputErrors(fromUnit, toUnit, amount))
             {
                 MessageBox.Show("Fill all inputs");
                 return;
@@ -269,32 +273,32 @@ namespace ConvertMate
 
             decimal result = 0.0M;
             if (fromUnit.Equals("°C") && toUnit.Equals("°F"))
-                result = TemperatureConvertor.CelsiusToFahrenheit(Decimal.Parse(amount));
+                result = TemperatureConvertor.CelsiusToFahrenheit(parsedAmount);
             else if (fromUnit.Equals("°C") && toUnit.Equals("K"))
-                result = TemperatureConvertor.CelsiusToKelvin(Decimal.Parse(amount));
+                result = TemperatureConvertor.CelsiusToKelvin(parsedAmount);
             else if (fromUnit.Equals("°C") && toUnit.Equals("°R"))
-                result = TemperatureConvertor.CelsiusToRankine(Decimal.Parse(amount));
+                result = TemperatureConvertor.CelsiusToRankine(parsedAmount);
 
             else if (fromUnit.Equals("°F") && toUnit.Equals("°C"))
-                result = TemperatureConvertor.FahrenheitToCelsius(Decimal.Parse(amount));
+                result = TemperatureConvertor.FahrenheitToCelsius(parsedAmount);
             else if (fromUnit.Equals("°F") && toUnit.Equals("K"))
-                result = TemperatureConvertor.FahrenheitToKelvin(Decimal.Parse(amount));
+                result = TemperatureConvertor.FahrenheitToKelvin(parsedAmount);
             else if (fromUnit.Equals("°F") && toUnit.Equals("°R"))
-                result = TemperatureConvertor.FahrenheitToRankine(Decimal.Parse(amount));
+                result = TemperatureConvertor.FahrenheitToRankine(parsedAmount);
 
             else if (fromUnit.Equals("K") && toUnit.Equals("°C"))
-                result = TemperatureConvertor.KelvinToCelsius(Decimal.Parse(amount));
+                result = TemperatureConvertor.KelvinToCelsius(parsedAmount);
             else if (fromUnit.Equals("K") && toUnit.Equals("°F"))
-                result = TemperatureConvertor.KelvinToFahrenheit(Decimal.Parse(amount));
+                result = TemperatureConvertor.KelvinToFahrenheit(parsedAmount);
             else if (fromUnit.Equals("K") && toUnit.Equals("°R"))
-                result = TemperatureConvertor.KelvinToRankine(Decimal.Parse(amount));
+                result = TemperatureConvertor.KelvinToRankine(parsedAmount);
 
             else if (fromUnit.Equals("°R") && toUnit.Equals("°C"))
-                result = TemperatureConvertor.RankineToCelsius(Decimal.Parse(amount));
+                result = TemperatureConvertor.RankineToCelsius(parsedAmount);
             else if (fromUnit.Equals("°R") && toUnit.Equals("°F"))
-                result = TemperatureConvertor.RankineToFahrenheit(Decimal.Parse(amount));
+                result = TemperatureConvertor.RankineToFahrenheit(parsedAmount);
             else if (fromUnit.Equals("°R") && toUnit.Equals("°K"))
-                result = TemperatureConvertor.RankineToKelvin(Decimal.Parse(amount));
+                result = TemperatureConvertor.RankineToKelvin(parsedAmount);
 
             textBoxResult.Text = result.ToString() + " " + toUnit;
             clearInputs();
@@ -307,8 +311,9 @@ namespace ConvertMate
             string fromUnit = textBoxFrom.Text.ToString().Trim();
             string toUnit = textBoxTo.Text.ToString().Trim();
             string amount = textBoxAmount.Text.ToString().Trim();
+            decimal parsedAmount = Decimal.Parse(amount);
 
-            if (fromUnit.IsNullOrEmpty() || toUnit.IsNullOrEmpty() || amount.IsNullOrEmpty())
+            if (areThereInputErrors(fromUnit, toUnit, amount))
             {
                 MessageBox.Show("Fill all inputs");
                 return;
@@ -325,49 +330,49 @@ namespace ConvertMate
             decimal result = 0.0M;
 
             if (fromUnit.Equals("g") && toUnit.Equals("kg"))
-                result = MassConvertor.GramToKilograms(Decimal.Parse(amount));
+                result = MassConvertor.GramToKilograms(parsedAmount);
             else if (fromUnit.Equals("g") && toUnit.Equals("lb"))
-                result = MassConvertor.GramToPounds(Decimal.Parse(amount));
+                result = MassConvertor.GramToPounds(parsedAmount);
             else if (fromUnit.Equals("g") && toUnit.Equals("oz"))
-                result = MassConvertor.GramToOunces(Decimal.Parse(amount));
+                result = MassConvertor.GramToOunces(parsedAmount);
             else if (fromUnit.Equals("g") && toUnit.Equals("t"))
-                result = MassConvertor.GramToTons(Decimal.Parse(amount));
+                result = MassConvertor.GramToTons(parsedAmount);
 
             else if (fromUnit.Equals("kg") && toUnit.Equals("g"))
-                result = MassConvertor.KilogramToGrams(Decimal.Parse(amount));
+                result = MassConvertor.KilogramToGrams(parsedAmount);
             else if (fromUnit.Equals("kg") && toUnit.Equals("lb"))
-                result = MassConvertor.KilogramToPounds(Decimal.Parse(amount));
+                result = MassConvertor.KilogramToPounds(parsedAmount);
             else if (fromUnit.Equals("kg") && toUnit.Equals("oz"))
-                result = MassConvertor.KilogramToOunces(Decimal.Parse(amount));
+                result = MassConvertor.KilogramToOunces(parsedAmount);
             else if (fromUnit.Equals("kg") && toUnit.Equals("t"))
-                result = MassConvertor.KilogramToTons(Decimal.Parse(amount));
+                result = MassConvertor.KilogramToTons(parsedAmount);
 
             else if (fromUnit.Equals("lb") && toUnit.Equals("g"))
-                result = MassConvertor.PoundToGrams(Decimal.Parse(amount));
+                result = MassConvertor.PoundToGrams(parsedAmount);
             else if (fromUnit.Equals("lb") && toUnit.Equals("kg"))
-                result = MassConvertor.PoundToKilograms(Decimal.Parse(amount));
+                result = MassConvertor.PoundToKilograms(parsedAmount);
             else if (fromUnit.Equals("lb") && toUnit.Equals("oz"))
-                result = MassConvertor.PoundToOunces(Decimal.Parse(amount));
+                result = MassConvertor.PoundToOunces(parsedAmount);
             else if (fromUnit.Equals("lb") && toUnit.Equals("t"))
-                result = MassConvertor.PoundToTons(Decimal.Parse(amount));
+                result = MassConvertor.PoundToTons(parsedAmount);
 
             else if (fromUnit.Equals("oz") && toUnit.Equals("g"))
-                result = MassConvertor.OunceToGrams(Decimal.Parse(amount));
+                result = MassConvertor.OunceToGrams(parsedAmount);
             else if (fromUnit.Equals("oz") && toUnit.Equals("kg"))
-                result = MassConvertor.OunceToKilograms(Decimal.Parse(amount));
+                result = MassConvertor.OunceToKilograms(parsedAmount);
             else if (fromUnit.Equals("oz") && toUnit.Equals("lb"))
-                result = MassConvertor.OunceToPounds(Decimal.Parse(amount));
+                result = MassConvertor.OunceToPounds(parsedAmount);
             else if (fromUnit.Equals("oz") && toUnit.Equals("t"))
-                result = MassConvertor.OunceToTons(Decimal.Parse(amount));
+                result = MassConvertor.OunceToTons(parsedAmount);
 
             else if (fromUnit.Equals("t") && toUnit.Equals("g"))
-                result = MassConvertor.TonToGrams(Decimal.Parse(amount));
+                result = MassConvertor.TonToGrams(parsedAmount);
             else if (fromUnit.Equals("t") && toUnit.Equals("kg"))
-                result = MassConvertor.TonToKilograms(Decimal.Parse(amount));
+                result = MassConvertor.TonToKilograms(parsedAmount);
             else if (fromUnit.Equals("t") && toUnit.Equals("lb"))
-                result = MassConvertor.TonToPounds(Decimal.Parse(amount));
+                result = MassConvertor.TonToPounds(parsedAmount);
             else if (fromUnit.Equals("t") && toUnit.Equals("oz"))
-                result = MassConvertor.TonToOunces(Decimal.Parse(amount));
+                result = MassConvertor.TonToOunces(parsedAmount);
 
             textBoxResult.Text = result.ToString() + " " + toUnit;
             clearInputs();
@@ -379,8 +384,9 @@ namespace ConvertMate
             string fromUnit = textBoxFrom.Text.ToString().Trim();
             string toUnit = textBoxTo.Text.ToString().Trim();
             string amount = textBoxAmount.Text.ToString().Trim();
+            decimal parsedAmount = Decimal.Parse(amount);
 
-            if (fromUnit.IsNullOrEmpty() || toUnit.IsNullOrEmpty() || amount.IsNullOrEmpty())
+            if (areThereInputErrors(fromUnit, toUnit, amount))
             {
                 MessageBox.Show("Fill all inputs");
                 return;
@@ -397,32 +403,32 @@ namespace ConvertMate
 
             decimal result = 0.0M;
             if (fromUnit.Equals("l") && toUnit.Equals("ml"))
-                result = VolumeConvertor.LiterToMilliliters(Decimal.Parse(amount));
+                result = VolumeConvertor.LiterToMilliliters(parsedAmount);
             else if (fromUnit.Equals("l") && toUnit.Equals("gal"))
-                result = VolumeConvertor.LiterToGallons(Decimal.Parse(amount));
+                result = VolumeConvertor.LiterToGallons(parsedAmount);
             else if (fromUnit.Equals("l") && toUnit.Equals("qt"))
-                result = VolumeConvertor.LiterToQuarts(Decimal.Parse(amount));
+                result = VolumeConvertor.LiterToQuarts(parsedAmount);
 
             else if (fromUnit.Equals("ml") && toUnit.Equals("l"))
-                result = VolumeConvertor.MilliliterToLiters(Decimal.Parse(amount));
+                result = VolumeConvertor.MilliliterToLiters(parsedAmount);
             else if (fromUnit.Equals("ml") && toUnit.Equals("gal"))
-                result = VolumeConvertor.MilliliterToGallons(Decimal.Parse(amount));
+                result = VolumeConvertor.MilliliterToGallons(parsedAmount);
             else if (fromUnit.Equals("ml") && toUnit.Equals("qt"))
-                result = VolumeConvertor.MilliliterToQuarts(Decimal.Parse(amount));
+                result = VolumeConvertor.MilliliterToQuarts(parsedAmount);
 
             else if (fromUnit.Equals("gal") && toUnit.Equals("l"))
-                result = VolumeConvertor.GallonToLiters(Decimal.Parse(amount));
+                result = VolumeConvertor.GallonToLiters(parsedAmount);
             else if (fromUnit.Equals("gal") && toUnit.Equals("ml"))
-                result = VolumeConvertor.GallonToMilliliters(Decimal.Parse(amount));
+                result = VolumeConvertor.GallonToMilliliters(parsedAmount);
             else if (fromUnit.Equals("gal") && toUnit.Equals("qt"))
-                result = VolumeConvertor.GallonToQuarts(Decimal.Parse(amount));
+                result = VolumeConvertor.GallonToQuarts(parsedAmount);
 
             else if (fromUnit.Equals("qt") && toUnit.Equals("l"))
-                result = VolumeConvertor.QuartToLiters(Decimal.Parse(amount));
+                result = VolumeConvertor.QuartToLiters(parsedAmount);
             else if (fromUnit.Equals("qt") && toUnit.Equals("ml"))
-                result = VolumeConvertor.QuartToMilliliters(Decimal.Parse(amount));
+                result = VolumeConvertor.QuartToMilliliters(parsedAmount);
             else if (fromUnit.Equals("qt") && toUnit.Equals("gal"))
-                result = VolumeConvertor.QuartToGallons(Decimal.Parse(amount));
+                result = VolumeConvertor.QuartToGallons(parsedAmount);
 
             textBoxResult.Text = result.ToString() + " " + toUnit;
             clearInputs();
@@ -436,8 +442,10 @@ namespace ConvertMate
             string fromUnit = textBoxFrom.Text.ToString().Trim();
             string toUnit = textBoxTo.Text.ToString().Trim();
             string amount = textBoxAmount.Text.ToString().Trim();
+            decimal parsedAmount = Decimal.Parse(amount);
 
-            if (fromUnit.IsNullOrEmpty() || toUnit.IsNullOrEmpty() || amount.IsNullOrEmpty())
+
+            if (areThereInputErrors(fromUnit, toUnit, amount))
             {
                 MessageBox.Show("Fill all inputs");
                 return;
@@ -457,100 +465,99 @@ namespace ConvertMate
 
             decimal result = 0.0M;
             if (fromUnit.Equals("s") && toUnit.Equals("min"))
-                result = TimeConvertor.SecondsToMinutes(Decimal.Parse(amount));
+                result = TimeConvertor.SecondsToMinutes(parsedAmount);
             else if (fromUnit.Equals("s") && toUnit.Equals("h"))
-                result = TimeConvertor.SecondsToHours(Decimal.Parse(amount));
+                result = TimeConvertor.SecondsToHours(parsedAmount);
             else if (fromUnit.Equals("s") && toUnit.Equals("d"))
-                result = TimeConvertor.SecondsToDays(Decimal.Parse(amount));
+                result = TimeConvertor.SecondsToDays(parsedAmount);
             else if (fromUnit.Equals("s") && toUnit.Equals("wk"))
-                result = TimeConvertor.SecondsToWeeks(Decimal.Parse(amount));
+                result = TimeConvertor.SecondsToWeeks(parsedAmount);
             else if (fromUnit.Equals("s") && toUnit.Equals("mo"))
-                result = TimeConvertor.SecondsToMonths(Decimal.Parse(amount));
+                result = TimeConvertor.SecondsToMonths(parsedAmount);
             else if (fromUnit.Equals("s") && toUnit.Equals("yr"))
-                result = TimeConvertor.SecondsToYears(Decimal.Parse(amount));
+                result = TimeConvertor.SecondsToYears(parsedAmount);
 
             else if (fromUnit.Equals("min") && toUnit.Equals("s"))
-                result = TimeConvertor.MinutesToSeconds(Decimal.Parse(amount));
+                result = TimeConvertor.MinutesToSeconds(parsedAmount);
             else if (fromUnit.Equals("min") && toUnit.Equals("h"))
-                result = TimeConvertor.MinutesToHours(Decimal.Parse(amount));
+                result = TimeConvertor.MinutesToHours(parsedAmount);
             else if (fromUnit.Equals("min") && toUnit.Equals("d"))
-                result = TimeConvertor.MinutesToDays(Decimal.Parse(amount));
+                result = TimeConvertor.MinutesToDays(parsedAmount);
             else if (fromUnit.Equals("min") && toUnit.Equals("wk"))
-                result = TimeConvertor.MinutesToWeeks(Decimal.Parse(amount));
+                result = TimeConvertor.MinutesToWeeks(parsedAmount);
             else if (fromUnit.Equals("min") && toUnit.Equals("mo"))
-                result = TimeConvertor.MinutesToMonths(Decimal.Parse(amount));
+                result = TimeConvertor.MinutesToMonths(parsedAmount);
             else if (fromUnit.Equals("min") && toUnit.Equals("yr"))
-                result = TimeConvertor.MinutesToYears(Decimal.Parse(amount));
+                result = TimeConvertor.MinutesToYears(parsedAmount);
 
             else if (fromUnit.Equals("h") && toUnit.Equals("s"))
-                result = TimeConvertor.HoursToSeconds(Decimal.Parse(amount));
+                result = TimeConvertor.HoursToSeconds(parsedAmount);
             else if (fromUnit.Equals("h") && toUnit.Equals("min"))
-                result = TimeConvertor.HoursToMinutes(Decimal.Parse(amount));
+                result = TimeConvertor.HoursToMinutes(parsedAmount);
             else if (fromUnit.Equals("h") && toUnit.Equals("d"))
-                result = TimeConvertor.HoursToDays(Decimal.Parse(amount));
+                result = TimeConvertor.HoursToDays(parsedAmount);
             else if (fromUnit.Equals("h") && toUnit.Equals("wk"))
-                result = TimeConvertor.HoursToWeeks(Decimal.Parse(amount));
+                result = TimeConvertor.HoursToWeeks(parsedAmount);
             else if (fromUnit.Equals("h") && toUnit.Equals("mo"))
-                result = TimeConvertor.HoursToMonths(Decimal.Parse(amount));
+                result = TimeConvertor.HoursToMonths(parsedAmount);
             else if (fromUnit.Equals("h") && toUnit.Equals("yr"))
-                result = TimeConvertor.HoursToYears(Decimal.Parse(amount));
+                result = TimeConvertor.HoursToYears(parsedAmount);
 
             else if (fromUnit.Equals("d") && toUnit.Equals("s"))
-                result = TimeConvertor.DaysToSeconds(Decimal.Parse(amount));
+                result = TimeConvertor.DaysToSeconds(parsedAmount);
             else if (fromUnit.Equals("d") && toUnit.Equals("min"))
-                result = TimeConvertor.DaysToMinutes(Decimal.Parse(amount));
+                result = TimeConvertor.DaysToMinutes(parsedAmount);
             else if (fromUnit.Equals("d") && toUnit.Equals("h"))
-                result = TimeConvertor.DaysToHours(Decimal.Parse(amount));
+                result = TimeConvertor.DaysToHours(parsedAmount);
             else if (fromUnit.Equals("d") && toUnit.Equals("wk"))
-                result = TimeConvertor.DaysToWeeks(Decimal.Parse(amount));
+                result = TimeConvertor.DaysToWeeks(parsedAmount);
             else if (fromUnit.Equals("d") && toUnit.Equals("mo"))
-                result = TimeConvertor.DaysToMonths(Decimal.Parse(amount));
+                result = TimeConvertor.DaysToMonths(parsedAmount);
             else if (fromUnit.Equals("d") && toUnit.Equals("yr"))
-                result = TimeConvertor.DaysToYears(Decimal.Parse(amount));
+                result = TimeConvertor.DaysToYears(parsedAmount);
 
             else if (fromUnit.Equals("wk") && toUnit.Equals("s"))
-                result = TimeConvertor.WeeksToSeconds(Decimal.Parse(amount));
+                result = TimeConvertor.WeeksToSeconds(parsedAmount);
             else if (fromUnit.Equals("wk") && toUnit.Equals("min"))
-                result = TimeConvertor.WeeksToMinutes(Decimal.Parse(amount));
+                result = TimeConvertor.WeeksToMinutes(parsedAmount);
             else if (fromUnit.Equals("wk") && toUnit.Equals("h"))
-                result = TimeConvertor.WeeksToHours(Decimal.Parse(amount));
+                result = TimeConvertor.WeeksToHours(parsedAmount);
             else if (fromUnit.Equals("wk") && toUnit.Equals("d"))
-                result = TimeConvertor.WeeksToDays(Decimal.Parse(amount));
+                result = TimeConvertor.WeeksToDays(parsedAmount);
             else if (fromUnit.Equals("wk") && toUnit.Equals("mo"))
-                result = TimeConvertor.WeeksToMonths(Decimal.Parse(amount));
+                result = TimeConvertor.WeeksToMonths(parsedAmount);
             else if (fromUnit.Equals("wk") && toUnit.Equals("yr"))
-                result = TimeConvertor.WeeksToYears(Decimal.Parse(amount));
+                result = TimeConvertor.WeeksToYears(parsedAmount);
 
             else if (fromUnit.Equals("mo") && toUnit.Equals("s"))
-                result = TimeConvertor.MonthsToSeconds(Decimal.Parse(amount));
+                result = TimeConvertor.MonthsToSeconds(parsedAmount);
             else if (fromUnit.Equals("mo") && toUnit.Equals("min"))
-                result = TimeConvertor.MonthsToMinutes(Decimal.Parse(amount));
+                result = TimeConvertor.MonthsToMinutes(parsedAmount);
             else if (fromUnit.Equals("mo") && toUnit.Equals("h"))
-                result = TimeConvertor.MonthsToHours(Decimal.Parse(amount));
+                result = TimeConvertor.MonthsToHours(parsedAmount);
             else if (fromUnit.Equals("mo") && toUnit.Equals("d"))
-                result = TimeConvertor.MonthsToDays(Decimal.Parse(amount));
+                result = TimeConvertor.MonthsToDays(parsedAmount);
             else if (fromUnit.Equals("mo") && toUnit.Equals("wk"))
-                result = TimeConvertor.MonthsToWeeks(Decimal.Parse(amount));
+                result = TimeConvertor.MonthsToWeeks(parsedAmount);
             else if (fromUnit.Equals("mo") && toUnit.Equals("yr"))
-                result = TimeConvertor.MonthsToYears(Decimal.Parse(amount));
+                result = TimeConvertor.MonthsToYears(parsedAmount);
 
             else if (fromUnit.Equals("yr") && toUnit.Equals("s"))
-                result = TimeConvertor.YearsToSeconds(Decimal.Parse(amount));
+                result = TimeConvertor.YearsToSeconds(parsedAmount);
             else if (fromUnit.Equals("yr") && toUnit.Equals("min"))
-                result = TimeConvertor.YearsToMinutes(Decimal.Parse(amount));
+                result = TimeConvertor.YearsToMinutes(parsedAmount);
             else if (fromUnit.Equals("yr") && toUnit.Equals("h"))
-                result = TimeConvertor.YearsToHours(Decimal.Parse(amount));
+                result = TimeConvertor.YearsToHours(parsedAmount);
             else if (fromUnit.Equals("yr") && toUnit.Equals("d"))
-                result = TimeConvertor.YearsToDays(Decimal.Parse(amount));
+                result = TimeConvertor.YearsToDays(parsedAmount);
             else if (fromUnit.Equals("yr") && toUnit.Equals("wk"))
-                result = TimeConvertor.YearsToWeeks(Decimal.Parse(amount));
+                result = TimeConvertor.YearsToWeeks(parsedAmount);
             else if (fromUnit.Equals("yr") && toUnit.Equals("mo"))
-                result = TimeConvertor.YearsToMonths(Decimal.Parse(amount));
+                result = TimeConvertor.YearsToMonths(parsedAmount);
 
             textBoxResult.Text = result.ToString() + " " + toUnit;
             clearInputs();
         }
-
 
 
 
@@ -562,6 +569,15 @@ namespace ConvertMate
             textBoxFrom.Clear();
             textBoxTo.Clear();
             textBoxAmount.Clear();
+        }
+
+        private bool areThereInputErrors(string fromUnit, string toUnit, string amount)
+        {
+            if (fromUnit.IsNullOrEmpty() || toUnit.IsNullOrEmpty() || amount.IsNullOrEmpty())
+            {
+                return true;
+            }
+            return false;
         }
 
     }
