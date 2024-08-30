@@ -48,6 +48,13 @@
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
+            this.labelConverting = new System.Windows.Forms.Label();
+            this.buttonClearAll = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.labelLoading = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +62,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(30, 131);
+            this.label4.Location = new System.Drawing.Point(30, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 20);
             this.label4.TabIndex = 22;
@@ -73,11 +80,11 @@
             // lbResult
             // 
             this.lbResult.AutoSize = true;
-            this.lbResult.Location = new System.Drawing.Point(263, 321);
+            this.lbResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbResult.Location = new System.Drawing.Point(263, 345);
             this.lbResult.Name = "lbResult";
-            this.lbResult.Size = new System.Drawing.Size(93, 13);
+            this.lbResult.Size = new System.Drawing.Size(0, 16);
             this.lbResult.TabIndex = 20;
-            this.lbResult.Text = "Result will be here";
             // 
             // label3
             // 
@@ -110,7 +117,7 @@
             // 
             this.btnCalculate.Location = new System.Drawing.Point(263, 379);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(254, 23);
+            this.btnCalculate.Size = new System.Drawing.Size(254, 36);
             this.btnCalculate.TabIndex = 16;
             this.btnCalculate.Text = "Calculate";
             this.btnCalculate.UseVisualStyleBackColor = true;
@@ -149,11 +156,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(259, 131);
+            this.label5.Location = new System.Drawing.Point(259, 110);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(127, 20);
+            this.label5.Size = new System.Drawing.Size(81, 20);
             this.label5.TabIndex = 26;
-            this.label5.Text = "Search Currency";
+            this.label5.Text = "Searching";
             // 
             // listBoxRecently
             // 
@@ -167,17 +174,17 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(569, 131);
+            this.label6.Location = new System.Drawing.Point(569, 110);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(222, 20);
+            this.label6.Size = new System.Drawing.Size(71, 20);
             this.label6.TabIndex = 28;
-            this.label6.Text = "Recently converted currencies";
+            this.label6.Text = "Recently";
             // 
             // buttonRemove
             // 
-            this.buttonRemove.Location = new System.Drawing.Point(573, 537);
+            this.buttonRemove.Location = new System.Drawing.Point(573, 525);
             this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(258, 23);
+            this.buttonRemove.Size = new System.Drawing.Size(126, 36);
             this.buttonRemove.TabIndex = 29;
             this.buttonRemove.Text = "Remove Log";
             this.buttonRemove.UseVisualStyleBackColor = true;
@@ -216,7 +223,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(31, 527);
+            this.label9.Location = new System.Drawing.Point(31, 545);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(94, 16);
             this.label9.TabIndex = 33;
@@ -226,17 +233,94 @@
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatus.Location = new System.Drawing.Point(31, 547);
+            this.labelStatus.Location = new System.Drawing.Point(31, 563);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(50, 16);
             this.labelStatus.TabIndex = 34;
             this.labelStatus.Text = "Status";
             // 
+            // labelConverting
+            // 
+            this.labelConverting.AutoSize = true;
+            this.labelConverting.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelConverting.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.labelConverting.Location = new System.Drawing.Point(259, 484);
+            this.labelConverting.Name = "labelConverting";
+            this.labelConverting.Size = new System.Drawing.Size(223, 20);
+            this.labelConverting.TabIndex = 35;
+            this.labelConverting.Text = "Converting... please be patient";
+            this.labelConverting.Visible = false;
+            // 
+            // buttonClearAll
+            // 
+            this.buttonClearAll.Location = new System.Drawing.Point(718, 525);
+            this.buttonClearAll.Name = "buttonClearAll";
+            this.buttonClearAll.Size = new System.Drawing.Size(113, 36);
+            this.buttonClearAll.TabIndex = 36;
+            this.buttonClearAll.Text = "Clear All";
+            this.buttonClearAll.UseVisualStyleBackColor = true;
+            this.buttonClearAll.Click += new System.EventHandler(this.buttonClearAll_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(31, 132);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(180, 13);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "Double click on the desired currecny";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(260, 131);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(123, 13);
+            this.label11.TabIndex = 38;
+            this.label11.Text = "Search for your currency";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(263, 329);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(82, 13);
+            this.label12.TabIndex = 39;
+            this.label12.Text = "Last conversion";
+            // 
+            // labelLoading
+            // 
+            this.labelLoading.AutoSize = true;
+            this.labelLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLoading.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.labelLoading.Location = new System.Drawing.Point(30, 510);
+            this.labelLoading.Name = "labelLoading";
+            this.labelLoading.Size = new System.Drawing.Size(174, 20);
+            this.labelLoading.TabIndex = 40;
+            this.labelLoading.Text = "Loading all currencies...";
+            this.labelLoading.Visible = false;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(570, 130);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(122, 13);
+            this.label14.TabIndex = 41;
+            this.label14.Text = "Your recent conversions";
+            // 
             // FormCurrencies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(896, 633);
+            this.ClientSize = new System.Drawing.Size(886, 614);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.labelLoading);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.buttonClearAll);
+            this.Controls.Add(this.labelConverting);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.pictureBoxLogo);
@@ -289,5 +373,12 @@
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Label labelConverting;
+        private System.Windows.Forms.Button buttonClearAll;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label labelLoading;
+        private System.Windows.Forms.Label label14;
     }
 }

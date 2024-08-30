@@ -231,15 +231,16 @@ namespace ConvertMate
         // Distance API call
         public async void distanceRequest()
         {
-            string fromUnit = textBoxFrom.Text.ToString();
-            string toUnit = textBoxTo.Text.ToString();
-            string amount = textBoxAmount.Text.ToString();
-
-            if (areThereInputErrors(fromUnit, toUnit, amount))
+            if (areThereInputErrors(textBoxFrom.Text.ToString().Trim(), textBoxTo.Text.ToString().Trim(), textBoxAmount.Text.ToString().Trim()))
             {
                 MessageBox.Show("Fill all inputs");
                 return;
             }
+
+            showConvertingStatusLabel();
+            string fromUnit = textBoxFrom.Text.ToString();
+            string toUnit = textBoxTo.Text.ToString();
+            string amount = textBoxAmount.Text.ToString();
 
             var client = new HttpClient();
             var request = new HttpRequestMessage
@@ -261,6 +262,8 @@ namespace ConvertMate
                 var result = jsonObject["result"].Value<string>();
 
                 textBoxResult.Text = result;
+
+                hideConvertingStatusLabel();
                 clearInputs();
             }
         }
@@ -268,16 +271,16 @@ namespace ConvertMate
         // Convertor of Temperature Units
         public void temperatureConvertor()
         {
-            string fromUnit = textBoxFrom.Text.ToString().Trim();
-            string toUnit = textBoxTo.Text.ToString().Trim();
-            string amount = textBoxAmount.Text.ToString().Trim();
-            decimal parsedAmount = Decimal.Parse(amount);
-
-            if (areThereInputErrors(fromUnit, toUnit, amount))
+            if (areThereInputErrors(textBoxFrom.Text.ToString().Trim(), textBoxTo.Text.ToString().Trim(), textBoxAmount.Text.ToString().Trim()))
             {
                 MessageBox.Show("Fill all inputs");
                 return;
             }
+
+            string fromUnit = textBoxFrom.Text.ToString().Trim();
+            string toUnit = textBoxTo.Text.ToString().Trim();
+            string amount = textBoxAmount.Text.ToString().Trim();
+            decimal parsedAmount = Math.Round(Decimal.Parse(amount), 3);
 
             /*
             
@@ -325,16 +328,17 @@ namespace ConvertMate
         // Convertor of Mass Units
         public void massConvertor()
         {
-            string fromUnit = textBoxFrom.Text.ToString().Trim();
-            string toUnit = textBoxTo.Text.ToString().Trim();
-            string amount = textBoxAmount.Text.ToString().Trim();
-            decimal parsedAmount = Decimal.Parse(amount);
 
-            if (areThereInputErrors(fromUnit, toUnit, amount))
+            if (areThereInputErrors(textBoxFrom.Text.ToString().Trim(), textBoxTo.Text.ToString().Trim(), textBoxAmount.Text.ToString().Trim()))
             {
                 MessageBox.Show("Fill all inputs");
                 return;
             }
+
+            string fromUnit = textBoxFrom.Text.ToString().Trim();
+            string toUnit = textBoxTo.Text.ToString().Trim();
+            string amount = textBoxAmount.Text.ToString().Trim();
+            decimal parsedAmount = Math.Round(Decimal.Parse(amount), 3);
 
             /*
                 list.Add(new Unit("Gram", "m"));
@@ -398,16 +402,16 @@ namespace ConvertMate
         // Convertor of volume units
         public void volumeConvertor()
         {
-            string fromUnit = textBoxFrom.Text.ToString().Trim();
-            string toUnit = textBoxTo.Text.ToString().Trim();
-            string amount = textBoxAmount.Text.ToString().Trim();
-            decimal parsedAmount = Decimal.Parse(amount);
-
-            if (areThereInputErrors(fromUnit, toUnit, amount))
+            if (areThereInputErrors(textBoxFrom.Text.ToString().Trim(), textBoxTo.Text.ToString().Trim(), textBoxAmount.Text.ToString().Trim()))
             {
                 MessageBox.Show("Fill all inputs");
                 return;
             }
+
+            string fromUnit = textBoxFrom.Text.ToString().Trim();
+            string toUnit = textBoxTo.Text.ToString().Trim();
+            string amount = textBoxAmount.Text.ToString().Trim();
+            decimal parsedAmount = Math.Round(Decimal.Parse(amount), 3);
 
             /*
                 
@@ -456,17 +460,16 @@ namespace ConvertMate
         // Which is a little bit bigger compared to the rest
         public void timeConvertor()
         {
-            string fromUnit = textBoxFrom.Text.ToString().Trim();
-            string toUnit = textBoxTo.Text.ToString().Trim();
-            string amount = textBoxAmount.Text.ToString().Trim();
-            decimal parsedAmount = Decimal.Parse(amount);
-
-
-            if (areThereInputErrors(fromUnit, toUnit, amount))
+            if (areThereInputErrors(textBoxFrom.Text.ToString().Trim(), textBoxTo.Text.ToString().Trim(), textBoxAmount.Text.ToString().Trim()))
             {
                 MessageBox.Show("Fill all inputs");
                 return;
             }
+
+            string fromUnit = textBoxFrom.Text.ToString().Trim();
+            string toUnit = textBoxTo.Text.ToString().Trim();
+            string amount = textBoxAmount.Text.ToString().Trim();
+            decimal parsedAmount = Math.Round(Decimal.Parse(amount), 3);
 
             /*
                 
@@ -615,6 +618,16 @@ namespace ConvertMate
                 labelStatus.Text = "Not connected";
                 labelStatus.ForeColor = Color.Red;
             }
+        }
+
+        private void showConvertingStatusLabel()
+        {
+            labelConverting.Visible = true;
+        }
+        
+        private void hideConvertingStatusLabel()
+        {
+            labelConverting.Visible = false;
         }
     }
 }

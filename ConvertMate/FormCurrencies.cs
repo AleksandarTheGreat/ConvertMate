@@ -58,6 +58,8 @@ namespace ConvertMate
                 }
 
                 // Construct URL for the API request
+
+                showConvertingStatusLabel();
                 string url = $"https://v6.exchangerate-api.com/v6/{apiKey}/latest/{baseCurrency}";
 
                 using (HttpClient client = new HttpClient())
@@ -83,27 +85,32 @@ namespace ConvertMate
 
                                 // Save to file the recently converted currency
 
+                                hideConvertingStatusLabel();
                                 clearInputs();
                             }
                             else
                             {
                                 MessageBox.Show("Please enter a valid number", "Input Error");
+                                hideConvertingStatusLabel();
                             }
                         }
                         else
                         {
                             MessageBox.Show($"Conversion rate for {targetCurrency} not found", "Error");
+                            hideConvertingStatusLabel();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Failed to retrieve data", "Error");
+                        MessageBox.Show("Failed to retrieve data, check for Currecny misspellings", "Error");
+                        hideConvertingStatusLabel();
                     }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error");
+                hideConvertingStatusLabel();
             }
         }
 
@@ -111,6 +118,7 @@ namespace ConvertMate
         {
             try
             {
+                labelLoading.Visible = true;
                 string apiKey = "f42f1685feea33e8ed4d0b9d";
                 string url = $"https://v6.exchangerate-api.com/v6/{apiKey}/latest/USD";
 
@@ -132,15 +140,19 @@ namespace ConvertMate
                     {
                         listBoxCurrencies.Items.Add(currency);
                     }
+
+                    labelLoading.Visible = false;
                 }
                 else
                 {
                     MessageBox.Show("Failed to retrieve currency data", "Error");
+                    labelLoading.Visible = false;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error");
+                labelLoading.Visible = false;
             }
         }
 
@@ -244,6 +256,22 @@ namespace ConvertMate
             
         }
 
+        private void buttonClearAll_Click(object sender, EventArgs e)
+        {
+            if (listBoxRecently.Items.Count == 0)
+            {
+                MessageBox.Show("There is nothing to clear");
+                return;
+            }
+
+            DialogResult res = MessageBox.Show("Are you sure you want to clear all recent conversions?", "Alert", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
+            {
+                listBoxRecently.Items.Clear();
+                saveToDataFile();
+            }
+        }
+
         private void FormCurrencies_Load(object sender, EventArgs e)
         {
             // Reading the recently search currencies
@@ -274,6 +302,16 @@ namespace ConvertMate
                 labelStatus.Text = "Not connected";
                 labelStatus.ForeColor = Color.Red;
             }
+        }
+
+        private void showConvertingStatusLabel()
+        {
+            labelConverting.Visible = true;
+        }
+
+        private void hideConvertingStatusLabel()
+        {
+            labelConverting.Visible = false;
         }
     }
 }
