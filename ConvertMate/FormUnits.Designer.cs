@@ -47,11 +47,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.label = new System.Windows.Forms.Label();
+            this.labelStatus = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonDistance
             // 
-            this.buttonDistance.Location = new System.Drawing.Point(35, 152);
+            this.buttonDistance.Location = new System.Drawing.Point(33, 176);
             this.buttonDistance.Name = "buttonDistance";
             this.buttonDistance.Size = new System.Drawing.Size(130, 38);
             this.buttonDistance.TabIndex = 0;
@@ -61,7 +65,7 @@
             // 
             // buttonTemperature
             // 
-            this.buttonTemperature.Location = new System.Drawing.Point(35, 212);
+            this.buttonTemperature.Location = new System.Drawing.Point(33, 238);
             this.buttonTemperature.Name = "buttonTemperature";
             this.buttonTemperature.Size = new System.Drawing.Size(130, 38);
             this.buttonTemperature.TabIndex = 1;
@@ -71,7 +75,7 @@
             // 
             // buttonMass
             // 
-            this.buttonMass.Location = new System.Drawing.Point(35, 275);
+            this.buttonMass.Location = new System.Drawing.Point(33, 301);
             this.buttonMass.Name = "buttonMass";
             this.buttonMass.Size = new System.Drawing.Size(130, 38);
             this.buttonMass.TabIndex = 2;
@@ -81,7 +85,7 @@
             // 
             // buttonVolume
             // 
-            this.buttonVolume.Location = new System.Drawing.Point(35, 340);
+            this.buttonVolume.Location = new System.Drawing.Point(33, 364);
             this.buttonVolume.Name = "buttonVolume";
             this.buttonVolume.Size = new System.Drawing.Size(130, 38);
             this.buttonVolume.TabIndex = 3;
@@ -91,7 +95,7 @@
             // 
             // buttonTime
             // 
-            this.buttonTime.Location = new System.Drawing.Point(35, 406);
+            this.buttonTime.Location = new System.Drawing.Point(33, 428);
             this.buttonTime.Name = "buttonTime";
             this.buttonTime.Size = new System.Drawing.Size(130, 38);
             this.buttonTime.TabIndex = 4;
@@ -102,7 +106,7 @@
             // listBoxMeasurments
             // 
             this.listBoxMeasurments.FormattingEnabled = true;
-            this.listBoxMeasurments.Location = new System.Drawing.Point(222, 152);
+            this.listBoxMeasurments.Location = new System.Drawing.Point(220, 176);
             this.listBoxMeasurments.Name = "listBoxMeasurments";
             this.listBoxMeasurments.Size = new System.Drawing.Size(192, 290);
             this.listBoxMeasurments.TabIndex = 5;
@@ -111,7 +115,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 131);
+            this.label1.Location = new System.Drawing.Point(30, 155);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 6;
@@ -120,7 +124,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(219, 131);
+            this.label2.Location = new System.Drawing.Point(217, 155);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 13);
             this.label2.TabIndex = 7;
@@ -128,7 +132,7 @@
             // 
             // textBoxFrom
             // 
-            this.textBoxFrom.Location = new System.Drawing.Point(456, 152);
+            this.textBoxFrom.Location = new System.Drawing.Point(454, 176);
             this.textBoxFrom.Multiline = true;
             this.textBoxFrom.Name = "textBoxFrom";
             this.textBoxFrom.Size = new System.Drawing.Size(132, 38);
@@ -137,7 +141,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(453, 131);
+            this.label3.Location = new System.Drawing.Point(451, 155);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 9;
@@ -146,7 +150,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(609, 131);
+            this.label4.Location = new System.Drawing.Point(607, 155);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(20, 13);
             this.label4.TabIndex = 11;
@@ -154,7 +158,7 @@
             // 
             // textBoxTo
             // 
-            this.textBoxTo.Location = new System.Drawing.Point(612, 152);
+            this.textBoxTo.Location = new System.Drawing.Point(610, 176);
             this.textBoxTo.Multiline = true;
             this.textBoxTo.Name = "textBoxTo";
             this.textBoxTo.Size = new System.Drawing.Size(135, 38);
@@ -163,7 +167,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(456, 229);
+            this.label5.Location = new System.Drawing.Point(454, 253);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 12;
@@ -171,7 +175,7 @@
             // 
             // textBoxAmount
             // 
-            this.textBoxAmount.Location = new System.Drawing.Point(456, 253);
+            this.textBoxAmount.Location = new System.Drawing.Point(454, 277);
             this.textBoxAmount.Multiline = true;
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(291, 38);
@@ -179,7 +183,7 @@
             // 
             // buttonCalculate
             // 
-            this.buttonCalculate.Location = new System.Drawing.Point(456, 310);
+            this.buttonCalculate.Location = new System.Drawing.Point(454, 334);
             this.buttonCalculate.Name = "buttonCalculate";
             this.buttonCalculate.Size = new System.Drawing.Size(291, 26);
             this.buttonCalculate.TabIndex = 14;
@@ -189,7 +193,7 @@
             // 
             // textBoxResult
             // 
-            this.textBoxResult.Location = new System.Drawing.Point(456, 377);
+            this.textBoxResult.Location = new System.Drawing.Point(454, 401);
             this.textBoxResult.Multiline = true;
             this.textBoxResult.Name = "textBoxResult";
             this.textBoxResult.Size = new System.Drawing.Size(291, 67);
@@ -198,7 +202,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(456, 358);
+            this.label6.Location = new System.Drawing.Point(454, 382);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(37, 13);
             this.label6.TabIndex = 16;
@@ -224,11 +228,43 @@
             this.label8.TabIndex = 18;
             this.label8.Text = "ConvertMate";
             // 
+            // pictureBoxLogo
+            // 
+            this.pictureBoxLogo.Location = new System.Drawing.Point(663, 19);
+            this.pictureBoxLogo.Name = "pictureBoxLogo";
+            this.pictureBoxLogo.Size = new System.Drawing.Size(100, 50);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxLogo.TabIndex = 19;
+            this.pictureBoxLogo.TabStop = false;
+            // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Location = new System.Drawing.Point(30, 500);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(94, 16);
+            this.label.TabIndex = 20;
+            this.label.Text = "Network status";
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStatus.Location = new System.Drawing.Point(30, 516);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(81, 16);
+            this.labelStatus.TabIndex = 21;
+            this.labelStatus.Text = "Connected";
+            // 
             // FormUnits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(815, 506);
+            this.ClientSize = new System.Drawing.Size(820, 556);
+            this.Controls.Add(this.labelStatus);
+            this.Controls.Add(this.label);
+            this.Controls.Add(this.pictureBoxLogo);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -251,6 +287,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormUnits";
             this.Text = "Units Converter";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,5 +314,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private System.Windows.Forms.Label label;
+        private System.Windows.Forms.Label labelStatus;
     }
 }

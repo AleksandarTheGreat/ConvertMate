@@ -23,11 +23,16 @@ namespace ConvertMate
         public UnitGroup unitGroupTime { get; set; }
         private int counter = 1;
         private string type;
+        private bool netStatus = false;
 
         public FormUnits()
         {
             InitializeComponent();
             setUpUnitGroups();
+            setUpImagesAndIcons();
+            netStatus = NetworkStatus.IsConnectedToInternet();
+            checkStatusAndUpdateUI();
+
             type = "distance";
             listBoxMeasurments.Items.Clear();
             foreach (Unit unit in unitGroupDistance.unitsList)
@@ -37,7 +42,7 @@ namespace ConvertMate
         }
 
         // All Distance units, Load them all ASYNCHRONIOUSLY
-        // This method is not called
+        // This method is not called, since I don't need it yet
         public async void loadMeasurementUnits()
         {
             var client = new HttpClient();
@@ -105,7 +110,14 @@ namespace ConvertMate
 
         private void buttonDistance_Click(object sender, EventArgs e)
         {
+            if (!netStatus)
+            {
+                MessageBox.Show("Please connect to a network for valid conversions");
+                return;
+            }
+
             type = "distance";
+            counter = 1;
             listBoxMeasurments.Items.Clear();
             foreach(Unit unit in unitGroupDistance.unitsList)
             {
@@ -116,6 +128,7 @@ namespace ConvertMate
         private void buttonTemperature_Click(object sender, EventArgs e)
         {
             type = "temperature";
+            counter = 1;
             listBoxMeasurments.Items.Clear();
             foreach (Unit unit in unitGroupTemperature.unitsList)
             {
@@ -127,6 +140,7 @@ namespace ConvertMate
         private void buttonMass_Click(object sender, EventArgs e)
         {
             type = "mass";
+            counter = 1;
             listBoxMeasurments.Items.Clear();
             foreach (Unit unit in unitGroupMass.unitsList)
             {
@@ -138,6 +152,7 @@ namespace ConvertMate
         private void buttonVolume_Click(object sender, EventArgs e)
         {
             type = "volume";
+            counter = 1;
             listBoxMeasurments.Items.Clear();
             foreach (Unit unit in unitGroupVolume.unitsList)
             {
@@ -149,6 +164,7 @@ namespace ConvertMate
         private void buttonTime_Click(object sender, EventArgs e)
         {
             type = "time";
+            counter = 1;
             listBoxMeasurments.Items.Clear();
             foreach (Unit unit in unitGroupTime.unitsList)
             {
@@ -580,5 +596,24 @@ namespace ConvertMate
             return false;
         }
 
+        private void setUpImagesAndIcons()
+        {
+            this.Icon = new Icon(@"..\..\Images\ic_logo_currency.ico");
+            this.pictureBoxLogo.Image = Image.FromFile(@"..\..\Images\ic_logo_convert.png");
+        }
+
+        private void checkStatusAndUpdateUI()
+        {
+            if (netStatus)
+            {
+                labelStatus.Text = "Connected";
+                labelStatus.ForeColor = Color.Green;
+            }
+            else
+            {
+                labelStatus.Text = "Not connected";
+                labelStatus.ForeColor = Color.Red;
+            }
+        }
     }
 }

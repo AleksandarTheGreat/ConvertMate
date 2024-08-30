@@ -19,14 +19,26 @@ namespace ConvertMate
         private static readonly HttpClient client = new HttpClient();
         private static int counter = 1;
         private SortedSet<string> allCurrencies;
+        private bool netStatus = false;
         public FormCurrencies()
         {
             InitializeComponent();
             LoadCurrencies();
+            setUpImagesAndIcons();
+
+            // Check connectivity
+            netStatus = NetworkStatus.IsConnectedToInternet();
+            checkNetStatusAndUpdateUI();
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
+            if (!netStatus)
+            {
+                MessageBox.Show("Please connect to a network");
+                return;
+            }
+
             calculate();
         }
 
@@ -191,7 +203,6 @@ namespace ConvertMate
             }
 
             File.WriteAllText(relativePath, stringBuilder.ToString());
-            MessageBox.Show("Saved to file successfully ??");
         }
 
         public void readFromDataFile()
@@ -243,6 +254,26 @@ namespace ConvertMate
         {
             // Saving the recently search currencies
             saveToDataFile();
+        }
+
+        private void setUpImagesAndIcons()
+        {
+            this.Icon = new Icon(@"..\..\Images\ic_logo_currency.ico");
+            this.pictureBoxLogo.Image = Image.FromFile(@"..\..\Images\ic_logo_currency.png");
+        }
+
+        private void checkNetStatusAndUpdateUI()
+        {
+            if (netStatus)
+            {
+                labelStatus.Text = "Connected";
+                labelStatus.ForeColor = Color.Green;
+            }
+            else
+            {
+                labelStatus.Text = "Not connected";
+                labelStatus.ForeColor = Color.Red;
+            }
         }
     }
 }
