@@ -242,7 +242,6 @@ namespace ConvertMate
 
                 textBoxResult.Text = result;
                 clearInputs();
-                MessageBox.Show(result);
             }
         }
 
