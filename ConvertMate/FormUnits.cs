@@ -22,11 +22,39 @@ namespace ConvertMate
         public UnitGroup unitGroupVolume { get; set; }
         public UnitGroup unitGroupTime { get; set; }
         private int counter = 1;
+        private string type = "";
 
         public FormUnits()
         {
             InitializeComponent();
             setUpUnitGroups();
+            listBoxMeasurments.Items.Clear();
+            foreach (Unit unit in unitGroupDistance.unitsList)
+            {
+                listBoxMeasurments.Items.Add(unit);
+            }
+        }
+
+        public async void loadMeasurementUnits()
+        {
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri("https://measurement-unit-converter.p.rapidapi.com/length/units"),
+                Headers =
+                {
+                    { "x-rapidapi-key", "e038cee021msh9bb6e855b6f66dbp1ffd84jsn311270b306ce" },
+                    { "x-rapidapi-host", "measurement-unit-converter.p.rapidapi.com" },
+                },
+            };
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(body);
+                MessageBox.Show(body);
+            }
         }
 
         public void setUpUnitGroups()
@@ -75,6 +103,7 @@ namespace ConvertMate
 
         private void buttonDistance_Click(object sender, EventArgs e)
         {
+            type = "distance";
             listBoxMeasurments.Items.Clear();
             foreach(Unit unit in unitGroupDistance.unitsList)
             {
@@ -84,38 +113,46 @@ namespace ConvertMate
 
         private void buttonTemperature_Click(object sender, EventArgs e)
         {
+            type = "temperature";
             listBoxMeasurments.Items.Clear();
             foreach (Unit unit in unitGroupTemperature.unitsList)
             {
                 listBoxMeasurments.Items.Add(unit);
             }
+            clearInputs();
         }
 
         private void buttonMass_Click(object sender, EventArgs e)
         {
+            type = "mass";
             listBoxMeasurments.Items.Clear();
             foreach (Unit unit in unitGroupMass.unitsList)
             {
                 listBoxMeasurments.Items.Add(unit);
             }
+            clearInputs();
         }
 
         private void buttonVolume_Click(object sender, EventArgs e)
         {
+            type = "volume";
             listBoxMeasurments.Items.Clear();
             foreach (Unit unit in unitGroupVolume.unitsList)
             {
                 listBoxMeasurments.Items.Add(unit);
             }
+            clearInputs();
         }
 
         private void buttonTime_Click(object sender, EventArgs e)
         {
+            type = "time";
             listBoxMeasurments.Items.Clear();
             foreach (Unit unit in unitGroupTime.unitsList)
             {
                 listBoxMeasurments.Items.Add(unit);
             }
+            clearInputs();
         }
 
         private void listBoxMeasurments_DoubleClick(object sender, EventArgs e)
@@ -123,15 +160,81 @@ namespace ConvertMate
             if (counter == 1)
             {
                 string unit = listBoxMeasurments.SelectedItem.ToString();
-                textBoxFrom.Text = unit;
+                string[] parts = unit.Split(' ');
+                textBoxFrom.Text = parts[1];
                 counter++;
             }
             else
             {
                 string unit = listBoxMeasurments.SelectedItem.ToString();
-                textBoxTo.Text = unit;
+                string[] parts = unit.Split(' ');
+                textBoxTo.Text = parts[1];
                 counter = 1;
             }
         }
+
+        private async void buttonCalculate_Click(object sender, EventArgs e)
+        {
+            switch (type)
+            {
+                case "distance":
+                    {
+                        distanceRequest();
+                        break;
+                    }
+                default:
+                    {
+                        MessageBox.Show("Not ready yet");
+                        break;
+                    }
+            }
+        }
+
+        private void clearInputs()
+        {
+            textBoxFrom.Clear();
+            textBoxTo.Clear();
+            textBoxAmount.Clear();
+        }
+
+        // Distance API call
+        public async void distanceRequest()
+        {
+            string fromUnit = textBoxFrom.Text.ToString();
+            string toUnit = textBoxTo.Text.ToString();
+            string amount = textBoxAmount.Text.ToString();
+
+            if (fromUnit.IsNullOrEmpty() || toUnit.IsNullOrEmpty() || amount.IsNullOrEmpty())
+            {
+                MessageBox.Show("Fill all inputs");
+                return;
+            }
+
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"https://measurement-unit-converter.p.rapidapi.com/length?value={amount}&from={fromUnit}&to={toUnit}"),
+                Headers =
+                {
+                    { "x-rapidapi-key", "e038cee021msh9bb6e855b6f66dbp1ffd84jsn311270b306ce" },
+                    { "x-rapidapi-host", "measurement-unit-converter.p.rapidapi.com" },
+                },
+            };
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                var jsonObject = JObject.Parse(body);
+
+                var result = jsonObject["result"].Value<string>();
+
+                textBoxResult.Text = result;
+                clearInputs();
+                MessageBox.Show(result);
+            }
+        }
+
+
     }
 }

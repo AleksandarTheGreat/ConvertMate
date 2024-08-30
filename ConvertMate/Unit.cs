@@ -17,8 +17,7 @@ namespace ConvertMate
 
         public override string ToString()
         {
-            return longName + " (" + shortName + ")";
+            return longName + " " + shortName + "";
         }
-
     }
 }

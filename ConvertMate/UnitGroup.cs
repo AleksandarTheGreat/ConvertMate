@@ -9,7 +9,7 @@ namespace ConvertMate
     public  class UnitGroup
     {
         public List<Unit> unitsList { get; set; }
-        public UnitGroup(List<Unit> unitsList) 
+        public UnitGroup(List<Unit> unitsList)
         {
             this.unitsList = unitsList;
         }

@@ -136,14 +136,20 @@ namespace ConvertMate
         {
             if (counter == 1)
             {
-                string currency = listBoxCurrencies.SelectedItem.ToString();
-                textBoxFrom.Text = currency;
-                counter++;
+                string currency = (string) listBoxCurrencies.SelectedItem;
+                if (currency != null)
+                {
+                    textBoxFrom.Text = currency;
+                    counter++;
+                }
             } else if (counter == 2)
             {
-                string currency = listBoxCurrencies.SelectedItem.ToString();
-                textBoxTo.Text = currency;
-                counter = 1;
+                string currency = (string) listBoxCurrencies.SelectedItem;
+                if (currency != null)
+                {
+                    textBoxTo.Text = currency;
+                    counter = 1;
+                }
             }
         }
 

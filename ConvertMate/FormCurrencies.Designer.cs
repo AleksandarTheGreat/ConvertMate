@@ -43,12 +43,14 @@
             this.listBoxRecently = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonRemove = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(53, 46);
+            this.label4.Location = new System.Drawing.Point(31, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 22;
@@ -57,7 +59,7 @@
             // listBoxCurrencies
             // 
             this.listBoxCurrencies.FormattingEnabled = true;
-            this.listBoxCurrencies.Location = new System.Drawing.Point(56, 71);
+            this.listBoxCurrencies.Location = new System.Drawing.Point(34, 138);
             this.listBoxCurrencies.Name = "listBoxCurrencies";
             this.listBoxCurrencies.Size = new System.Drawing.Size(184, 342);
             this.listBoxCurrencies.TabIndex = 21;
@@ -66,7 +68,7 @@
             // lbResult
             // 
             this.lbResult.AutoSize = true;
-            this.lbResult.Location = new System.Drawing.Point(285, 230);
+            this.lbResult.Location = new System.Drawing.Point(263, 297);
             this.lbResult.Name = "lbResult";
             this.lbResult.Size = new System.Drawing.Size(93, 13);
             this.lbResult.TabIndex = 20;
@@ -75,7 +77,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(439, 119);
+            this.label3.Location = new System.Drawing.Point(417, 186);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 19;
@@ -84,7 +86,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(285, 169);
+            this.label2.Location = new System.Drawing.Point(263, 236);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 18;
@@ -93,7 +95,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(285, 119);
+            this.label1.Location = new System.Drawing.Point(263, 186);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 17;
@@ -101,7 +103,7 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(285, 288);
+            this.btnCalculate.Location = new System.Drawing.Point(263, 355);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(254, 23);
             this.btnCalculate.TabIndex = 16;
@@ -111,28 +113,28 @@
             // 
             // textBoxAmount
             // 
-            this.textBoxAmount.Location = new System.Drawing.Point(439, 138);
+            this.textBoxAmount.Location = new System.Drawing.Point(417, 205);
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(100, 20);
             this.textBoxAmount.TabIndex = 15;
             // 
             // textBoxFrom
             // 
-            this.textBoxFrom.Location = new System.Drawing.Point(285, 138);
+            this.textBoxFrom.Location = new System.Drawing.Point(263, 205);
             this.textBoxFrom.Name = "textBoxFrom";
             this.textBoxFrom.Size = new System.Drawing.Size(100, 20);
             this.textBoxFrom.TabIndex = 14;
             // 
             // textBoxTo
             // 
-            this.textBoxTo.Location = new System.Drawing.Point(285, 185);
+            this.textBoxTo.Location = new System.Drawing.Point(263, 252);
             this.textBoxTo.Name = "textBoxTo";
             this.textBoxTo.Size = new System.Drawing.Size(100, 20);
             this.textBoxTo.TabIndex = 13;
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(285, 71);
+            this.textBoxSearch.Location = new System.Drawing.Point(263, 138);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(254, 20);
             this.textBoxSearch.TabIndex = 25;
@@ -141,7 +143,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(285, 43);
+            this.label5.Location = new System.Drawing.Point(263, 110);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(86, 13);
             this.label5.TabIndex = 26;
@@ -150,7 +152,7 @@
             // listBoxRecently
             // 
             this.listBoxRecently.FormattingEnabled = true;
-            this.listBoxRecently.Location = new System.Drawing.Point(595, 71);
+            this.listBoxRecently.Location = new System.Drawing.Point(573, 138);
             this.listBoxRecently.Name = "listBoxRecently";
             this.listBoxRecently.Size = new System.Drawing.Size(258, 342);
             this.listBoxRecently.TabIndex = 27;
@@ -158,7 +160,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(595, 45);
+            this.label6.Location = new System.Drawing.Point(573, 112);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(152, 13);
             this.label6.TabIndex = 28;
@@ -166,7 +168,7 @@
             // 
             // buttonRemove
             // 
-            this.buttonRemove.Location = new System.Drawing.Point(595, 434);
+            this.buttonRemove.Location = new System.Drawing.Point(573, 501);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(258, 23);
             this.buttonRemove.TabIndex = 29;
@@ -174,11 +176,33 @@
             this.buttonRemove.UseVisualStyleBackColor = true;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(28, 19);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(273, 31);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Currencies Converter";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(30, 59);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(100, 20);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "ConvertMate";
+            // 
             // FormCurrencies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 510);
+            this.ClientSize = new System.Drawing.Size(879, 558);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.listBoxRecently);
@@ -196,7 +220,7 @@
             this.Controls.Add(this.textBoxTo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormCurrencies";
-            this.Text = "FormCurrencies";
+            this.Text = "Currencies Converter";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCurrencies_FormClosed);
             this.Load += new System.EventHandler(this.FormCurrencies_Load);
             this.ResumeLayout(false);
@@ -220,5 +244,7 @@
         private System.Windows.Forms.ListBox listBoxRecently;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button buttonRemove;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
