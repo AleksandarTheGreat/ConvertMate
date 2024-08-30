@@ -117,6 +117,7 @@ namespace ConvertMate
             {
                 listBoxMeasurments.Items.Add(unit);
             }
+            clearInputs();
         }
 
         private void buttonTemperature_Click(object sender, EventArgs e)
