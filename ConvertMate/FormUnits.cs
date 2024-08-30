@@ -110,12 +110,6 @@ namespace ConvertMate
 
         private void buttonDistance_Click(object sender, EventArgs e)
         {
-            if (!netStatus)
-            {
-                MessageBox.Show("Please connect to a network for valid conversions");
-                return;
-            }
-
             type = "distance";
             counter = 1;
             listBoxMeasurments.Items.Clear();
@@ -193,6 +187,13 @@ namespace ConvertMate
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
+            // Check whether network is available
+            if (!netStatus)
+            {
+                MessageBox.Show("Please connect to a network for valid conversions");
+                return;
+            }
+
             switch (type)
             {
                 case "distance":

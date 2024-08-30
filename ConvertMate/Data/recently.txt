@@ -2,3 +2,7 @@
 30 EUR is equal to 33,25 USD
 302 ARS is equal to 0,54 AZN
 30 ANG is equal to 33,52 BBD
+10 AUD is equal to 19749,52 BIF
+50000 MKD is equal to 907,50 USD
+50000 CAD is equal to 2044105,00 MKD
+30 CAD is equal to 22,26 USD
