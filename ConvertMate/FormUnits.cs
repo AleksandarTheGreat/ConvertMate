@@ -75,7 +75,7 @@ namespace ConvertMate
             unitGroupTemperature = new UnitGroup(list);
 
             list = new List<Unit>();
-            list.Add(new Unit("Gram", "m"));
+            list.Add(new Unit("Gram", "g"));
             list.Add(new Unit("Kilogram", "kg"));
             list.Add(new Unit("Pound", "lb"));
             list.Add(new Unit("Ounce", "oz"));
@@ -186,6 +186,11 @@ namespace ConvertMate
                         temperatureConvertor();
                         break;
                     }
+                case "mass":
+                    {
+                        massConvertor(); 
+                        break;
+                    }
                 default:
                     {
                         MessageBox.Show("Not ready yet");
@@ -193,14 +198,6 @@ namespace ConvertMate
                     }
             }
         }
-
-        private void clearInputs()
-        {
-            textBoxFrom.Clear();
-            textBoxTo.Clear();
-            textBoxAmount.Clear();
-        }
-
         // Distance API call
         public async void distanceRequest()
         {
@@ -293,5 +290,97 @@ namespace ConvertMate
             textBoxResult.Text = result.ToString();
             clearInputs();
         }
+
+        
+        // Convertor of Mass Units
+        public void massConvertor()
+        {
+            string fromUnit = textBoxFrom.Text.ToString().Trim();
+            string toUnit = textBoxTo.Text.ToString().Trim();
+            string amount = textBoxAmount.Text.ToString().Trim();
+
+            if (fromUnit.IsNullOrEmpty() || toUnit.IsNullOrEmpty() || amount.IsNullOrEmpty())
+            {
+                MessageBox.Show("Fill all inputs");
+                return;
+            }
+
+            /*
+                list.Add(new Unit("Gram", "m"));
+                list.Add(new Unit("Kilogram", "kg"));
+                list.Add(new Unit("Pound", "lb"));
+                list.Add(new Unit("Ounce", "oz"));
+                list.Add(new Unit("Ton", "t"));
+            */
+
+            decimal result = 0.0M;
+
+            if (fromUnit.Equals("g") && toUnit.Equals("kg"))
+                result = MassConvertor.GramToKilograms(Decimal.Parse(amount));
+            else if (fromUnit.Equals("g") && toUnit.Equals("lb"))
+                result = MassConvertor.GramToPounds(Decimal.Parse(amount));
+            else if (fromUnit.Equals("g") && toUnit.Equals("oz"))
+                result = MassConvertor.GramToOunces(Decimal.Parse(amount));
+            else if (fromUnit.Equals("g") && toUnit.Equals("t"))
+                result = MassConvertor.GramToTons(Decimal.Parse(amount));
+
+            else if (fromUnit.Equals("kg") && toUnit.Equals("g"))
+                result = MassConvertor.KilogramToGrams(Decimal.Parse(amount));
+            else if (fromUnit.Equals("kg") && toUnit.Equals("lb"))
+                result = MassConvertor.KilogramToPounds(Decimal.Parse(amount));
+            else if (fromUnit.Equals("kg") && toUnit.Equals("oz"))
+                result = MassConvertor.KilogramToOunces(Decimal.Parse(amount));
+            else if (fromUnit.Equals("kg") && toUnit.Equals("t"))
+                result = MassConvertor.KilogramToTons(Decimal.Parse(amount));
+
+            else if (fromUnit.Equals("lb") && toUnit.Equals("g"))
+                result = MassConvertor.PoundToGrams(Decimal.Parse(amount));
+            else if (fromUnit.Equals("lb") && toUnit.Equals("kg"))
+                result = MassConvertor.PoundToKilograms(Decimal.Parse(amount));
+            else if (fromUnit.Equals("lb") && toUnit.Equals("oz"))
+                result = MassConvertor.PoundToOunces(Decimal.Parse(amount));
+            else if (fromUnit.Equals("lb") && toUnit.Equals("t"))
+                result = MassConvertor.PoundToTons(Decimal.Parse(amount));
+
+            else if (fromUnit.Equals("oz") && toUnit.Equals("g"))
+                result = MassConvertor.OunceToGrams(Decimal.Parse(amount));
+            else if (fromUnit.Equals("oz") && toUnit.Equals("kg"))
+                result = MassConvertor.OunceToKilograms(Decimal.Parse(amount));
+            else if (fromUnit.Equals("oz") && toUnit.Equals("lb"))
+                result = MassConvertor.OunceToPounds(Decimal.Parse(amount));
+            else if (fromUnit.Equals("oz") && toUnit.Equals("t"))
+                result = MassConvertor.OunceToTons(Decimal.Parse(amount));
+
+            else if (fromUnit.Equals("t") && toUnit.Equals("g"))
+                result = MassConvertor.TonToGrams(Decimal.Parse(amount));
+            else if (fromUnit.Equals("t") && toUnit.Equals("kg"))
+                result = MassConvertor.TonToKilograms(Decimal.Parse(amount));
+            else if (fromUnit.Equals("t") && toUnit.Equals("lb"))
+                result = MassConvertor.TonToPounds(Decimal.Parse(amount));
+            else if (fromUnit.Equals("t") && toUnit.Equals("oz"))
+                result = MassConvertor.TonToOunces(Decimal.Parse(amount));
+
+            textBoxResult.Text = result.ToString();
+            clearInputs();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        private void clearInputs()
+        {
+            textBoxFrom.Clear();
+            textBoxTo.Clear();
+            textBoxAmount.Clear();
+        }
+
     }
 }

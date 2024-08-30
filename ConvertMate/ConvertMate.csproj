@@ -123,6 +123,7 @@
     <Compile Include="FormUnits.Designer.cs">
       <DependentUpon>FormUnits.cs</DependentUpon>
     </Compile>
+    <Compile Include="MassConvertor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemperatureConvertor.cs" />
