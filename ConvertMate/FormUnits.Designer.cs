@@ -259,6 +259,7 @@
             this.textBoxAmount.Size = new System.Drawing.Size(291, 38);
             this.textBoxAmount.TabIndex = 24;
             this.textBoxAmount.Text = "";
+            this.textBoxAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxAmount_KeyDown);
             // 
             // textBoxResult
             // 

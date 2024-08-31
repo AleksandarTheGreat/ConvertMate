@@ -24,6 +24,7 @@ namespace ConvertMate
         private int counter = 1;
         private string type;
         private bool netStatus = false;
+        private ErrorProvider errorProvider;
 
         public FormUnits()
         {
@@ -32,6 +33,8 @@ namespace ConvertMate
             setUpImagesAndIcons();
             netStatus = NetworkStatus.IsConnectedToInternet();
             checkStatusAndUpdateUI();
+
+            errorProvider = new ErrorProvider();
 
             type = "distance";
             listBoxMeasurments.Items.Clear();
@@ -172,6 +175,11 @@ namespace ConvertMate
         {
             if (counter == 1)
             {
+                if (listBoxMeasurments.SelectedItem == null)
+                {
+                    MessageBox.Show("Please make a selection");
+                    return;
+                }
                 string unit = listBoxMeasurments.SelectedItem.ToString();
                 string[] parts = unit.Split(' ');
                 textBoxFrom.Text = parts[1];
@@ -179,6 +187,11 @@ namespace ConvertMate
             }
             else
             {
+                if (listBoxMeasurments.SelectedItem == null)
+                {
+                    MessageBox.Show("Please make a selection");
+                    return;
+                }
                 string unit = listBoxMeasurments.SelectedItem.ToString();
                 string[] parts = unit.Split(' ');
                 textBoxTo.Text = parts[1];
@@ -629,6 +642,21 @@ namespace ConvertMate
         private void hideConvertingStatusLabel()
         {
             labelConverting.Visible = false;
+        }
+
+        private void textBoxAmount_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9) || (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9) 
+                || e.KeyCode == Keys.Back || e.KeyCode == Keys.Separator)  
+            {
+                e.SuppressKeyPress = false;
+                errorProvider.SetError(textBoxAmount, "");
+            }
+            else
+            {
+                e.SuppressKeyPress = true;
+                errorProvider.SetError(textBoxAmount, "Enter a valid number");
+            }
         }
     }
 }
