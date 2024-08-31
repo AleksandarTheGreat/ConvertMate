@@ -1,4 +1,2 @@
-34 LAK is equal to 0,03 LSL
-50 USD is equal to 45,12 EUR
-32 EUR is equal to 1967,71 MKD
-32 AUD is equal to 21,76 USD
+50 USD is equal to 45,22 EUR
+10203 MKD is equal to 184,27 USD
