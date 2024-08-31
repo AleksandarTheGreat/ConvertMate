@@ -71,11 +71,16 @@ namespace ConvertMate
         public void setUpUnitGroups()
         {
             List<Unit> list = new List<Unit>();
+            list.Add(new Unit("Nanometer", "nm"));
+            list.Add(new Unit("Micrometer", "μm"));
+            list.Add(new Unit("Millimeter", "mm"));
+            list.Add(new Unit("Centimeter", "cm"));
             list.Add(new Unit("Meter", "m"));
             list.Add(new Unit("Kilometer", "km"));
             list.Add(new Unit("Mile", "mi"));
             list.Add(new Unit("Yard", "yd"));
             list.Add(new Unit("Foot", "ft"));
+            list.Add(new Unit("Inch", "in"));
             unitGroupDistance = new UnitGroup(list);
 
             list = new List<Unit>();
