@@ -12,7 +12,7 @@ namespace ConvertMate
         private const decimal MinutesPerHour = 60M;
         private const decimal HoursPerDay = 24M;
         private const decimal DaysPerWeek = 7M;
-        private const decimal WeeksPerMonth = 4.345M; // Approximate average
+        private const decimal WeeksPerMonth = 4.345M; // Average
         private const decimal MonthsPerYear = 12M;
 
         // Convert Seconds to other units

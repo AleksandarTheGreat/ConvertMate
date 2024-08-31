@@ -204,7 +204,7 @@ namespace ConvertMate
             // Check whether network is available
             if (!netStatus)
             {
-                MessageBox.Show("Please connect to a network for valid conversions");
+                MessageBox.Show("Please connect to a network for app functionality");
                 return;
             }
 
@@ -647,7 +647,7 @@ namespace ConvertMate
         private void textBoxAmount_KeyDown(object sender, KeyEventArgs e)
         {
             if ((e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9) || (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9) 
-                || e.KeyCode == Keys.Back || e.KeyCode == Keys.Separator)  
+                || e.KeyCode == Keys.Back || e.KeyCode == Keys.OemPeriod || e.KeyCode == Keys.Oemcomma)  
             {
                 e.SuppressKeyPress = false;
                 errorProvider.SetError(textBoxAmount, "");

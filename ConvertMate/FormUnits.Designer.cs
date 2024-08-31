@@ -165,7 +165,7 @@
             // 
             // buttonCalculate
             // 
-            this.buttonCalculate.Location = new System.Drawing.Point(454, 326);
+            this.buttonCalculate.Location = new System.Drawing.Point(454, 342);
             this.buttonCalculate.Name = "buttonCalculate";
             this.buttonCalculate.Size = new System.Drawing.Size(291, 36);
             this.buttonCalculate.TabIndex = 14;
@@ -292,11 +292,11 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(577, 253);
+            this.label11.Location = new System.Drawing.Point(483, 313);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(168, 13);
+            this.label11.Size = new System.Drawing.Size(262, 13);
             this.label11.TabIndex = 28;
-            this.label11.Text = "use a comma \',\' for decimal values";
+            this.label11.Text = "use a dot \'.\' for distance and a comma for all the rest \',\'";
             // 
             // labelConverting
             // 

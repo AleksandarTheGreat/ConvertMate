@@ -158,6 +158,12 @@ namespace ConvertMate
 
         private void listBoxCurrencies_DoubleClick(object sender, EventArgs e)
         {
+            if (listBoxCurrencies.SelectedItem == null)
+            {
+                MessageBox.Show("Please make a selection");
+                return;
+            }
+
             if (counter == 1)
             {
                 string currency = (string) listBoxCurrencies.SelectedItem;

@@ -1,2 +1,1 @@
-50 USD is equal to 45,22 EUR
-10203 MKD is equal to 184,27 USD
+50 MKD is equal to 0,90 USD
